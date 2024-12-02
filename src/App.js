@@ -6,7 +6,7 @@ import TrackingList from "./pages/TrackingList";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/ftek_test-task">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new_item" element={<NewItem />} />
