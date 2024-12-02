@@ -159,7 +159,7 @@ const BookingForm = () => {
                 value={formData.departureDate}
                 onChange={handleChange}
               />
-              {errors.date && (
+              {errors.departureDate && (
                 <div className="invalid-feedback">{errors.departureDate}</div>
               )}
             </div>
