@@ -1,25 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import content from "./content.json";
 
 const cargoSlice = createSlice({
   name: "cargos",
-  initialState: [
-    {
-      id: "CARGO001",
-      name: "Строительные материалы",
-      status: "В пути",
-      origin: "Москва",
-      destination: "Казань",
-      departureDate: "2024-11-24",
-    },
-    {
-      id: "CARGO002",
-      name: "Хрупкий груз",
-      status: "Ожидает отправки",
-      origin: "Санкт-Петербург",
-      destination: "Екатеринбург",
-      departureDate: "2024-11-26",
-    },
-  ],
+  initialState: content,
   reducers: {
     addCargo: (state, action) => {
       state.push(action.payload);

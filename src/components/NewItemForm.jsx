@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCargo } from "../store/trackingSlice";
 
 const BookingForm = () => {
@@ -12,6 +12,7 @@ const BookingForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const cargos = useSelector((state) => state.cargos);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -53,14 +54,15 @@ const BookingForm = () => {
       return;
     }
 
-    const generateId = () => {
-      const randomNum = Math.floor(1000 + Math.random() * 9000);
-      return `CARGO${randomNum}`;
+    const generateId = (cargos) => {
+      const nextIdNumber = cargos.length + 1;
+      const idString = nextIdNumber.toString().padStart(3, "0");
+      return `CARGO${idString}`;
     };
 
     const cargoData = {
       ...formData,
-      id: generateId(),
+      id: generateId(cargos),
       status: "Ожидает отправки",
     };
 
@@ -80,7 +82,7 @@ const BookingForm = () => {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-12 col-md-8 col-lg-6 px-3">
-          <h2 className="mb-4">Добавить новый груз</h2>
+          <h2 className="mb-4">Оформить новую доставку</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3 ">
               <label name="name" className="form-label">
@@ -134,9 +136,9 @@ const BookingForm = () => {
                 value={formData.destination}
                 onChange={handleChange}>
                 <option value="">Выберите пункт назначения</option>
-                <option value="Луганск">Луганск</option>
-                <option value="Донецк">Донецк</option>
-                <option value="Свердловск">Свердловск</option>
+                <option value="Луганск">Казань</option>
+                <option value="Донецк">Ростов</option>
+                <option value="Свердловск">Нижний Новгород</option>
               </select>
               {errors.destination && (
                 <div className="invalid-feedback">{errors.destination}</div>

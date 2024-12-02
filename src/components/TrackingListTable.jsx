@@ -43,7 +43,7 @@ const TrackingListTable = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Список грузов</h2>
+      <h2 className="mb-4">Список доставок</h2>
       <div className="mb-4">
         <label className="form-label">Фильтровать по статусу:</label>
         <select

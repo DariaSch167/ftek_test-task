@@ -1,10 +1,10 @@
-.App-link {
-  color: #61dafb;
-}
-
 .home_background {
   background-image: url("../public/assets/images/bg_home-banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.custom-padding {
+  padding-top: 20vh;
 }

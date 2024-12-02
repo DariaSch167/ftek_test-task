@@ -5,9 +5,18 @@ import { Link } from "react-router-dom";
 const TrackingList = () => {
   return (
     <main>
-      <Link to="/" className="btn btn-link m-3">
-        Вернуться на главную
-      </Link>
+      <ul className="list-unstyled">
+        <li>
+          <Link to="/" className="btn btn-link mx-3 mt-3">
+            Вернуться на главную
+          </Link>
+        </li>
+        <li>
+          <Link to="/new_item" className="btn btn-link mx-3">
+            Оформить новую доставку
+          </Link>
+        </li>
+      </ul>
       <TrackingListTable />
     </main>
   );
