@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/ftek_test-task/static/css/main.4b7dd326.css",
+    "main.js": "/ftek_test-task/static/js/main.bf42a529.js",
+    "static/media/bg_home-banner.jpg": "/ftek_test-task/static/media/bg_home-banner.e22d4dcf1327530b3a52.jpg",
+    "index.html": "/ftek_test-task/index.html",
+    "main.4b7dd326.css.map": "/ftek_test-task/static/css/main.4b7dd326.css.map",
+    "main.bf42a529.js.map": "/ftek_test-task/static/js/main.bf42a529.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4b7dd326.css",
+    "static/js/main.bf42a529.js"
+  ]
+}
