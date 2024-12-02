@@ -69,6 +69,8 @@ const BookingForm = () => {
     console.log("Форма успешно отправлена:", cargoData);
     dispatch(addCargo(cargoData));
 
+    alert("Новая отправка добавлена в список доставок");
+
     setFormData({
       name: "",
       origin: "",
