@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCargo } from "../store/trackingSlice";
@@ -7,7 +7,24 @@ const TrackingListTable = () => {
   const cargos = useSelector((state) => state.cargos);
   const dispatch = useDispatch();
 
-  const handleStatusChange = (id, newStatus) => {
+  const [selectedStatus, setSelectedStatus] = useState("");
+
+  const filteredCargos = cargos.filter((cargo) => {
+    if (!selectedStatus) return true;
+    return cargo.status === selectedStatus;
+  });
+
+  const handleStatusChange = (id, newStatus, departureDate) => {
+    const today = new Date();
+    const selectedDate = new Date(departureDate);
+
+    if (newStatus === "Доставлен" && selectedDate > today) {
+      alert(
+        "Невозможно изменить статус на 'Доставлен', так как дата отправки в будущем."
+      );
+      return;
+    }
+
     dispatch(updateCargo({ id, data: { status: newStatus } }));
   };
 
@@ -27,6 +44,18 @@ const TrackingListTable = () => {
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Список грузов</h2>
+      <div className="mb-4">
+        <label className="form-label">Фильтровать по статусу:</label>
+        <select
+          className="form-select"
+          value={selectedStatus}
+          onChange={(e) => setSelectedStatus(e.target.value)}>
+          <option value="">Все</option>
+          <option value="Ожидает отправки">Ожидает отправки</option>
+          <option value="В пути">В пути</option>
+          <option value="Доставлен">Доставлен</option>
+        </select>
+      </div>
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>
@@ -39,7 +68,7 @@ const TrackingListTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cargos.map((cargo) => (
+          {filteredCargos.map((cargo) => (
             <tr key={cargo.id}>
               <td>{cargo.id}</td>
               <td>{cargo.name}</td>
@@ -48,7 +77,11 @@ const TrackingListTable = () => {
                   className={`form-select ${getStatusClass(cargo.status)}`}
                   value={cargo.status}
                   onChange={(e) =>
-                    handleStatusChange(cargo.id, e.target.value)
+                    handleStatusChange(
+                      cargo.id,
+                      e.target.value,
+                      cargo.departureDate
+                    )
                   }>
                   <option value="Ожидает отправки">Ожидает отправки</option>
                   <option value="В пути">В пути</option>

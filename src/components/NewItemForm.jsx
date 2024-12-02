@@ -66,6 +66,14 @@ const BookingForm = () => {
 
     console.log("Форма успешно отправлена:", cargoData);
     dispatch(addCargo(cargoData));
+
+    setFormData({
+      name: "",
+      origin: "",
+      destination: "",
+      departureDate: "",
+    });
+    setErrors({});
   };
 
   return (
